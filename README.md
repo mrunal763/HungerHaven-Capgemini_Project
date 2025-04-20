@@ -28,11 +28,11 @@
 
 ## How to Run
 
-1. **Prerequisites**: Ensure you have Node.js installed on your system.
+1. **Prerequisites**: Ensure you have Node.js and json server installed on your system.
 2. **Clone the Repository**:  
    ```bash
    git clone <repository-url>
-   cd HungerHaven
+   cd json
    ```
 3. **Set Up JSON Server**:  
    Navigate to the folder containing the JSON file and run:  
@@ -42,7 +42,7 @@
    This will start a local server (default: `http://localhost:3000`).
 
 4. **Open the Project**:  
-   Launch the `index.html` file in a web browser to start using HungerHaven.
+   Launch the `Home.html` file in a web browser to start using HungerHaven.
 
 ---
 
@@ -77,7 +77,7 @@
 
 ---
 
-## Screenshots (Optional)
+## Screenshots
 ![image](https://github.com/user-attachments/assets/9f572135-f547-4a3f-8d3f-0e0193209351)
 
 
