@@ -1,0 +1,361 @@
+<head>
+    
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="css/Admin.css">
+
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .chart-container canvas {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: auto;
+        }
+
+        .chart-container.pie {
+            max-width: 400px;
+            /* Smaller size specifically for pie chart */
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+
+<div class="container mt-5" id="main-content">
+    <h2 class="mb-4 text-center">HungerHaven Reports</h2>
+    <div id="spinner" class="spinner d-none"></div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <input type="month" id="monthFilter" class="form-control" placeholder="Filter by Month">
+        </div>
+        <div class="col-md-3">
+            <input type="text" id="restaurantFilter" class="form-control" placeholder="Filter by Restaurant">
+        </div>
+        <div class="col-md-3">
+            <input type="text" id="userFilter" class="form-control" placeholder="Filter by User">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label for="dateRangeFilterStart">From:</label>
+            <input type="date" id="dateRangeFilterStart" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <label for="dateRangeFilterEnd">To:</label>
+            <input type="date" id="dateRangeFilterEnd" class="form-control">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <button class="btn btn-primary" onclick="exportToExcel()">Export to Excel</button>
+        <button class="btn btn-danger" onclick="exportToPDF()">Export to PDF</button>
+    </div>
+
+    <div class="alert alert-info fw-bold" id="totalRevenueDisplay">
+        Total Revenue: ₹0
+    </div>
+
+    <div class="mb-4">
+        <div id="customLegend" class="mb-3"></div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card p-3 mb-3">
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card p-3 mb-3">
+                    <div class="chart-container">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3 mb-3">
+            <div class="chart-container pie">
+                <canvas id="pieChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Restaurant</th>
+                <th>User</th>
+                <th>Total Amount</th>
+            </tr>
+        </thead>
+        <tbody id="reportBody"></tbody>
+    </table>
+</div>
+
+<script>
+    function B() {
+        const ordersApi = "http://localhost:3000/Orders";
+        const usersApi = "http://localhost:3000/Users";
+        const restaurantsApi = "http://localhost:3000/Restaurants";
+
+        let allOrders = [];
+        let barChart, lineChart, pieChart;
+
+        const reportBody = document.getElementById("reportBody");
+        const monthFilter = document.getElementById("monthFilter");
+        const restaurantFilter = document.getElementById("restaurantFilter");
+        const userFilter = document.getElementById("userFilter");
+        const dateRangeFilterStart = document.getElementById("dateRangeFilterStart");
+        const dateRangeFilterEnd = document.getElementById("dateRangeFilterEnd");
+        const totalRevenueDisplay = document.getElementById("totalRevenueDisplay");
+
+        function showSpinner() {
+            document.getElementById("spinner").classList.remove("d-none");
+        }
+
+        function hideSpinner() {
+            document.getElementById("spinner").classList.add("d-none");
+        }
+
+        async function fetchAllData() {
+            showSpinner();
+            try {
+                const [orders, users, restaurants] = await Promise.all([
+                    fetch(ordersApi).then(res => res.json()),
+                    fetch(usersApi).then(res => res.json()),
+                    fetch(restaurantsApi).then(res => res.json())
+                ]);
+
+                allOrders = orders.map(order => {
+                    const user = users.find(u => u.id === order.UserID);
+                    const rest = restaurants.find(r => r.id === order.RestaurantID);
+                    return {
+                        id: order.OrderID,
+                        date: order.OrderDate,
+                        restaurant: rest ? rest.Name : "Unknown",
+                        user: user ? user.Name : "Unknown",
+                        total: order.TotalAmount
+                    };
+                });
+
+                renderTable(allOrders);
+                updateCharts(allOrders);
+                updateTotalRevenue(allOrders);
+            } catch (err) {
+                console.error("Fetch error:", err);
+                reportBody.innerHTML = `<tr><td colspan="5" class="text-danger">Failed to load data.</td></tr>`;
+            } finally {
+                hideSpinner();
+            }
+        }
+
+        function renderTable(data) {
+            reportBody.innerHTML = "";
+            data.forEach(order => {
+                const row = `<tr>
+                        <td>${order.id}</td>
+                        <td>${order.date}</td>
+                        <td>${order.restaurant}</td>
+                        <td>${order.user}</td>
+                        <td>₹${order.total}</td>
+                    </tr>`;
+                reportBody.innerHTML += row;
+            });
+        }
+
+        function applyFilters() {
+            showSpinner();
+            setTimeout(() => {
+                const selectedMonth = monthFilter.value;
+                const restaurantSearch = restaurantFilter.value.toLowerCase();
+                const userSearch = userFilter.value.toLowerCase();
+                const startDate = dateRangeFilterStart.value ? new Date(dateRangeFilterStart.value) : null;
+                const endDate = dateRangeFilterEnd.value ? new Date(dateRangeFilterEnd.value) : null;
+
+                const filtered = allOrders.filter(order => {
+                    const orderDate = new Date(order.date);
+                    const orderMonth = `${orderDate.getFullYear()}-${String(orderDate.getMonth() + 1).padStart(2, '0')}`;
+                    return (
+                        (!selectedMonth || orderMonth === selectedMonth) &&
+                        (!restaurantSearch || order.restaurant.toLowerCase().includes(restaurantSearch)) &&
+                        (!userSearch || order.user.toLowerCase().includes(userSearch)) &&
+                        (!startDate || orderDate >= startDate) &&
+                        (!endDate || orderDate <= endDate)
+                    );
+                });
+
+                renderTable(filtered);
+                updateCharts(filtered);
+                updateTotalRevenue(filtered);
+                hideSpinner();
+            }, 300);
+        }
+
+        function updateCharts(data) {
+            const revenueByRestaurant = {};
+            const revenueByDate = {};
+
+            data.forEach(order => {
+                revenueByRestaurant[order.restaurant] = (revenueByRestaurant[order.restaurant] || 0) + order.total;
+                const dateKey = order.date.slice(0, 10);
+                revenueByDate[dateKey] = (revenueByDate[dateKey] || 0) + order.total;
+            });
+
+            const labelsRestaurant = Object.keys(revenueByRestaurant);
+            const valuesRestaurant = Object.values(revenueByRestaurant);
+            const labelsDate = Object.keys(revenueByDate);
+            const valuesDate = Object.values(revenueByDate);
+            const colors = ['#ff6384', '#36a2eb', '#ffce56', '#8bc34a', '#e91e63'];
+
+            if (barChart) barChart.destroy();
+            if (lineChart) lineChart.destroy();
+            if (pieChart) pieChart.destroy();
+
+            barChart = new Chart(document.getElementById('revenueChart'), {
+                type: 'bar',
+                data: {
+                    labels: labelsRestaurant,
+                    datasets: [{
+                        label: 'Revenue by Restaurant',
+                        data: valuesRestaurant,
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    devicePixelRatio: 2,
+                    scales: {
+                        x: { beginAtZero: true }
+                    }
+                }
+            });
+
+            lineChart = new Chart(document.getElementById('lineChart'), {
+                type: 'line',
+                data: {
+                    labels: labelsDate,
+                    datasets: [{
+                        label: 'Revenue by Date',
+                        data: valuesDate,
+                        borderColor: '#4bc0c0',
+                        backgroundColor: '#4bc0c0',
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    devicePixelRatio: 2
+                }
+            });
+
+            pieChart = new Chart(document.getElementById('pieChart'), {
+                type: 'pie',
+                data: {
+                    labels: labelsRestaurant,
+                    datasets: [{
+                        label: 'Revenue Split',
+                        data: valuesRestaurant,
+                        backgroundColor: colors,
+                        borderColor: '#fff',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    devicePixelRatio: 2
+                }
+            });
+        }
+
+        function updateTotalRevenue(data) {
+            const total = data.reduce((sum, order) => sum + order.total, 0);
+            totalRevenueDisplay.textContent = `Total Revenue: ₹${total.toFixed(2)}`;
+        }
+
+        function exportToExcel() {
+            showSpinner();
+            setTimeout(() => {
+                const wb = XLSX.utils.book_new();
+                const ws_data = [["Order ID", "Date", "Restaurant", "User", "Total Amount"]];
+                const rows = document.querySelectorAll("#reportBody tr");
+                rows.forEach(tr => {
+                    const row = Array.from(tr.children).map(td => td.textContent);
+                    ws_data.push(row);
+                });
+                const ws = XLSX.utils.aoa_to_sheet(ws_data);
+                XLSX.utils.book_append_sheet(wb, ws, "Reports");
+                XLSX.writeFile(wb, "HungerHaven_Reports.xlsx");
+                hideSpinner();
+            }, 300);
+        }
+
+        function exportToPDF() {
+            showSpinner();
+            setTimeout(() => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                doc.text("HungerHaven Reports", 10, 10);
+                let y = 20;
+                const headers = ["Order ID", "Date", "Restaurant", "User", "Total"];
+                doc.setFontSize(10);
+                doc.text(headers.join("\t"), 10, y);
+                y += 10;
+                const rows = document.querySelectorAll("#reportBody tr");
+                rows.forEach(tr => {
+                    const row = Array.from(tr.children).map(td => td.textContent);
+                    doc.text(row.join("\t"), 10, y);
+                    y += 10;
+                });
+                doc.save("HungerHaven_Reports.pdf");
+                hideSpinner();
+            }, 300);
+        }
+
+        // Filter listeners
+        monthFilter.addEventListener("change", applyFilters);
+        restaurantFilter.addEventListener("input", applyFilters);
+        userFilter.addEventListener("input", applyFilters);
+        dateRangeFilterStart.addEventListener("input", applyFilters);
+        dateRangeFilterEnd.addEventListener("input", applyFilters);
+
+        fetchAllData();
+    }
+
+    B();
+</script>

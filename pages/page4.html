@@ -1,0 +1,35 @@
+
+<body>
+
+	<div class="container mt-4" id="main-content">
+		<h2 class="mb-3">Orders</h2>
+		<br>
+
+
+		<input type="text" id="searchOrder" class="form-control mb-3" placeholder="Search Orders...">
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+		  <th class="sortable" data-field="OrderID">Order ID</th>
+		  <th class="sortable" data-field="UserName">User Name</th>
+		  <th class="sortable" data-field="RestaurantName">Restaurant</th>
+		  <th class="sortable" data-field="Location">Location</th>
+		  <th class="sortable" data-field="Contact">Contact</th>
+		  <th class="sortable" data-field="OrderDate">Order Date</th>
+		  <th class="sortable" data-field="TotalAmount">Amount</th>
+		</tr>
+	  </thead>
+	  
+	<tbody id="ordersTableBody">
+		<!-- Orders will be rendered here -->
+	</tbody>
+</table>
+
+
+	</div>
+	<script src="js/Orders.js">
+
+	</script>
+
+</body>

@@ -1,0 +1,51 @@
+
+<head>
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+ 
+  
+</head>
+<body id="main-content">
+  <div class="container py-5">
+    <h2 class="mb-4 text-center text-warning">Restaurant Orders</h2>
+
+    <input type="text" id="searchInput" class="form-control mb-4" placeholder="Search by customer name or date">
+
+    <h4>Pending Orders</h4>
+    <div class="table-responsive mb-5">
+      <table class="table table-bordered">
+        <thead class="table-secondary text-dark">
+          <tr>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Total Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="pendingOrders"></tbody>
+      </table>
+    </div>
+
+    <h4>Completed Orders</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-secondary text-dark">
+          <tr>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Total Amount</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="completedOrders"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS (Optional for some components) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Your Orders Script -->
+  <script src="../Project/js/ResOrders.js"></script>
+</body>

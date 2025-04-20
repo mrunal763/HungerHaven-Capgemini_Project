@@ -1,0 +1,58 @@
+
+<div class="container" id="main-content">
+    <h2 class="mb-4">Restaurant Profile</h2>
+
+    <div class="card p-4 shadow-sm" id="profileCard">
+        <div class="mb-3">
+            <strong>Restaurant Name:</strong> <span id="profileRestaurantName"></span>
+        </div>
+
+        <div class="mb-3">
+            <strong>Email:</strong> <span id="profileEmail"></span>
+        </div>
+        <div class="mb-3">
+            <strong>Password:</strong> <span id="profilePassword"></span>
+        </div>
+        <div class="mb-3">
+            <strong>Location:</strong> <span id="profileLocation"></span>
+        </div>
+        <div class="mb-3">
+            <strong>Contact Number:</strong> <span id="profilePhone"></span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function B() {
+        const userId = sessionStorage.getItem("userId");
+
+        console.log("User ID:", userId);
+        fetch(`http://localhost:3000/Users/${userId}`)
+            .then((response) => {
+                console.log("Response status:");
+
+                // If the response is not OK (status other than 200), throw an error
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                // Try to parse the response as JSON
+                return response.json();
+            })
+            .then((user) => {
+                console.log("User object:", user);
+                document.getElementById("profileRestaurantName").innerHTML = user.Name;
+                document.getElementById("profileEmail").innerHTML = user.Email;
+                document.getElementById("profileLocation").innerHTML = user.Address;
+                document.getElementById("profilePhone").innerHTML = user.Phone;
+                document.getElementById("profilePassword").innerHTML = user.Password;
+            })
+            .catch((error) => {
+                console.error("Fetch error:", error);
+            });
+    }
+    B();
+
+
+
+</script>

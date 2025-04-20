@@ -1,0 +1,40 @@
+<!-- page1.html -->
+<div id="main-content">
+  <h2 class="mb-4">Restaurant Management</h2>
+
+  <form id="RestaurantForm" class="mb-4">
+      <div class="mb-3">
+          <label for="Name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="Name" required>
+          <div class="invalid-feedback">At least 2 characters required.</div>
+      </div>
+      <div class="mb-3">
+          <label for="Location" class="form-label">Location</label>
+          <input type="text" class="form-control" id="Location" required>
+          <div class="invalid-feedback">At least 5 characters required.</div>
+      </div>
+      <div class="mb-3">
+          <label for="Contact" class="form-label">Contact</label>
+          <input type="text" class="form-control" id="Contact" required>
+          <div class="invalid-feedback">At least 10 characters required.</div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="submitBtn">Add Restaurant</button>
+  </form>
+
+  <table class="table table-bordered">
+      <thead>
+          <tr>
+              <th>Restaurant ID</th>
+              <th>Name ⬆️</th>
+              <th>Location</th>
+              <th>Contact</th>
+              <th>Action</th>
+          </tr>
+      </thead>
+      <tbody id="RestaurantTableBody"></tbody>
+  </table>
+</div>
+
+<script src="../Project/js/Res.js">
+  sessionStorage.setItem("lastPage", page);
+</script>

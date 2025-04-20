@@ -1,0 +1,102 @@
+<body onload="loadLastPage()">
+    <div id="main-content">
+        <div class="d-flex justify-content-end mb-3">
+            <div class="text-end pe-3">
+                <h6 id="liveTime" class="mb-0 fw-bold text-secondary"></h6>
+                <small id="liveDate" class="text-muted"></small>
+            </div>
+        </div>
+
+        <div class="welcome-section mb-4">
+            <h2 class="fw-bold">Welcome, <span id="adminName">Admin</span> 👋</h2>
+            <p class="lead text-muted">
+                Welcome to <strong>HungerHaven</strong>, your smart dashboard to monitor orders, customers,
+                restaurants, and revenue — all in one place!
+            </p>
+        </div>
+
+        <div class="role-section mb-4 p-3 rounded shadow-sm bg-light">
+            <h5 class="fw-bold text-primary">Your Role</h5>
+            <p class="mb-0">
+                As the administrator, you're in charge of managing users, ensuring platform performance, resolving
+                order issues, and supporting restaurant partners.
+            </p>
+        </div>
+
+        <div class="todo-section mb-5">
+            <h5 class="fw-bold">Today's To-Do List 📌</h5>
+            <ul class="list-group">
+                <li class="list-group-item">✔ Review new restaurant applications</li>
+                <li class="list-group-item">✔ Monitor today’s total orders and revenue</li>
+                <li class="list-group-item">✔ Respond to customer support tickets</li>
+                <li class="list-group-item">✔ Approve pending transactions</li>
+            </ul>
+        </div>
+        <!-- Stats -->
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-primary">
+                    <strong>Total Orders:</strong> <span id="totalOrders">Loading...</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-success">
+                    <strong>Total Revenue:</strong> <span id="totalRevenue">₹0</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-info">
+                    <strong>Active Users:</strong> <span id="activeUsers">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        // This function loads the last visited page from sessionStorage
+        function loadLastPage() {
+            const lastPage = sessionStorage.getItem("lastPage");
+            if (lastPage) {
+                loadPage(lastPage);
+            } else {
+                loadPage("dashboard.html"); // Default to Dashboard if no page is saved
+            }
+        }
+
+        // This function loads a page into the main-content area and stores the last visited page
+        function loadPage(page) {
+            fetch(page)
+                .then((response) => response.text())
+                .then((data) => {
+                    const container = document.getElementById("main-content");
+                    container.innerHTML = data;
+
+                    // Extract and evaluate scripts manually
+                    const scripts = container.querySelectorAll("script");
+                    scripts.forEach((script) => {
+                        const newScript = document.createElement("script");
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript);
+                        script.remove(); // Optional: remove the original script tag
+                    });
+
+                    sessionStorage.setItem("lastPage", page); // Save the current page in sessionStorage
+                })
+                .catch((err) => {
+                    document.getElementById("main-content").innerHTML =
+                        '<p class="text-danger">Failed to load content.</p>';
+                    console.error(err);
+                });
+        }
+    </script>
+
+    <script src="js/Admin.js"></script>
+    <script src="../Project/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>

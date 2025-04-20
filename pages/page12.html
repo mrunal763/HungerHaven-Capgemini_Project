@@ -1,0 +1,240 @@
+<div class="container mt-4" id="main-content">
+  <h3 class="mb-3">Place New Order</h3>
+  <form id="orderForm">
+    <div class="mb-3">
+      <label for="restaurantSelect" class="form-label">Select Restaurant</label>
+      <select id="restaurantSelect" class="form-select"></select>
+    </div>
+    <div class="mb-3">
+      <label for="foodSelect" class="form-label">Select Food Item</label>
+      <select id="foodSelect" class="form-select" disabled></select>
+    </div>
+    <div class="mb-3 d-flex align-items-center">
+      <button type="button" class="btn btn-outline-secondary me-2" id="decreaseQty">-</button>
+      <input type="text" id="quantity" class="form-control text-center" style="width: 60px;" value="1" readonly>
+      <button type="button" class="btn btn-outline-secondary ms-2" id="increaseQty">+</button>
+    </div>
+    <button type="button" class="btn btn-success mb-3" id="addToCartBtn">Add to Cart</button>
+
+    <h5>Cart</h5>
+    <ul id="cartList" class="list-group mb-3"></ul>
+    <p><strong>Total Amount:</strong> ₹<span id="totalAmount">0</span></p>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <button type="button" id="placeOrderBtn" class="btn btn-primary">Place Order</button>
+      <button type="button" id="downloadBtn" class="btn btn-outline-secondary d-none">Download Bill</button>
+    </div>
+  </form>
+
+  <!-- Centered Success Alert -->
+  <div id="orderSuccess"
+    class="alert alert-success mt-4 d-none position-fixed top-50 start-50 translate-middle text-center"
+    style="z-index: 1050; min-width: 300px;">
+    ✅ Order placed successfully!
+    <button type="button" class="btn-close float-end" aria-label="Close"
+      onclick="document.getElementById('orderSuccess').classList.add('d-none')"></button>
+  </div>
+</div>
+
+<!-- jsPDF for Bill PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  function B() {
+    async function PlaceOrderModule() {
+      const apiRestaurants = "http://localhost:3000/Restaurants";
+      const apiFoodItems = "http://localhost:3000/FoodItems";
+      const apiOrders = "http://localhost:3000/Orders";
+      const userID = sessionStorage.getItem("userId");
+
+      const restaurantSelect = document.getElementById("restaurantSelect");
+      const foodSelect = document.getElementById("foodSelect");
+      const quantityInput = document.getElementById("quantity");
+      const addToCartBtn = document.getElementById("addToCartBtn");
+      const cartList = document.getElementById("cartList");
+      const totalAmountSpan = document.getElementById("totalAmount");
+      const placeOrderBtn = document.getElementById("placeOrderBtn");
+      const increaseBtn = document.getElementById("increaseQty");
+      const decreaseBtn = document.getElementById("decreaseQty");
+      const orderSuccess = document.getElementById("orderSuccess");
+      const downloadBtn = document.getElementById("downloadBtn");
+
+      let selectedRestaurant = null;
+      let selectedFoodItem = null;
+      let cart = [];
+      let lastOrderDetails = null;
+
+      // Load restaurants
+      const resData = await fetch(apiRestaurants).then(res => res.json());
+      restaurantSelect.innerHTML = `<option value="">-- Select --</option>`;
+      resData.forEach(rest => {
+        restaurantSelect.innerHTML += `<option value="${rest.id}">${rest.Name}</option>`;
+      });
+
+      // On restaurant change
+      restaurantSelect.addEventListener("change", async () => {
+        const restaurantId = restaurantSelect.value;
+        selectedRestaurant = restaurantId;
+        foodSelect.disabled = false;
+        quantityInput.value = 1;
+
+        const foodData = await fetch(`${apiFoodItems}?RestaurantID=${restaurantId}`).then(res => res.json());
+        foodSelect.innerHTML = `<option value="">-- Select Food --</option>`;
+        foodData.forEach(item => {
+          foodSelect.innerHTML += `<option value="${item.id}" data-price="${item.Price}">${item.Name} - ₹${item.Price}</option>`;
+        });
+      });
+
+      // On food change
+      foodSelect.addEventListener("change", () => {
+        selectedFoodItem = foodSelect.value;
+        quantityInput.value = 1;
+      });
+
+      // Quantity controls
+      increaseBtn.addEventListener("click", () => quantityInput.value++);
+      decreaseBtn.addEventListener("click", () => {
+        if (quantityInput.value > 1) quantityInput.value--;
+      });
+
+      // Add to Cart
+      addToCartBtn.addEventListener("click", () => {
+        const foodOption = foodSelect.options[foodSelect.selectedIndex];
+        const foodId = foodSelect.value;
+        const foodName = foodOption.text.split(" - ")[0];
+        const foodPrice = parseFloat(foodOption.dataset.price);
+        const quantity = parseInt(quantityInput.value);
+
+        if (!foodId) return alert("Please select a food item.");
+
+        const existingItem = cart.find(item => item.foodId === foodId);
+        if (existingItem) {
+          existingItem.quantity += quantity;
+        } else {
+          cart.push({ foodId, name: foodName, price: foodPrice, quantity });
+        }
+
+        renderCart();
+      });
+
+      // Render cart
+      function renderCart() {
+        cartList.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          const itemTotal = item.price * item.quantity;
+          total += itemTotal;
+          const li = document.createElement("li");
+          li.className = "list-group-item d-flex justify-content-between align-items-center";
+          li.innerHTML = `
+          ${item.name} x ${item.quantity} = ₹${itemTotal}
+          <button class="btn btn-sm btn-danger" onclick="removeCartItem(${index})">Remove</button>
+        `;
+          cartList.appendChild(li);
+        });
+
+        totalAmountSpan.textContent = total;
+      }
+
+      // Remove from cart
+      window.removeCartItem = function (index) {
+        cart.splice(index, 1);
+        renderCart();
+      };
+
+      // Submit order
+      placeOrderBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        if (!selectedRestaurant || cart.length === 0) {
+          alert("Please select a restaurant and add items to cart.");
+          return;
+        }
+
+        const now = new Date();
+        const orderDate = now.toISOString(); // Full date and time
+        const orderId = `${userID}-${now.getTime()}`; // Unique ID based on timestamp + userID
+        const totalAmount = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+        const order = {
+          OrderID: orderId,
+          UserID: userID,
+          RestaurantID: selectedRestaurant,
+          OrderDate: orderDate,
+          TotalAmount: totalAmount,
+          Status: "pending"
+        };
+
+        try {
+          const response = await fetch(apiOrders, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(order)
+          });
+
+          if (!response.ok) {
+            throw new Error('Failed to place order');
+          }
+
+          lastOrderDetails = {
+            orderId,
+            orderDate,
+            items: [...cart],
+            total: totalAmount
+          };
+
+          cart = [];
+          renderCart();
+          restaurantSelect.value = "";
+          foodSelect.innerHTML = '<option value="">-- Select Food --</option>';
+          foodSelect.disabled = true;
+          totalAmountSpan.textContent = "0";
+
+          orderSuccess.classList.remove("d-none");
+          downloadBtn.classList.remove("d-none");
+        } catch (err) {
+          console.error("Order error:", err);
+          alert("Failed to place order.");
+        }
+      });
+
+      // Manual download
+      downloadBtn.addEventListener("click", () => {
+        if (lastOrderDetails) {
+          const { orderId, orderDate, items, total } = lastOrderDetails;
+          generatePDFBill(orderId, orderDate, items, total);
+        }
+      });
+
+      // Generate PDF
+      function generatePDFBill(orderId, orderDate, items, total) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFontSize(16);
+        doc.text("HungerHaven Billing System", 60, 20);
+
+        doc.setFontSize(12);
+        doc.text(`Order ID: ${orderId}`, 20, 40);
+        doc.text(`Order Date: ${orderDate}`, 20, 50);
+        doc.text(`User ID: ${userID}`, 20, 60);
+
+        let y = 80;
+        doc.text("Items:", 20, y);
+        y += 10;
+
+        items.forEach(item => {
+          doc.text(`${item.name} x ${item.quantity} = ₹${item.price * item.quantity}`, 25, y);
+          y += 10;
+        });
+
+        doc.text(`Total Amount: ₹${total}`, 20, y + 10);
+        doc.save(`HungerHaven_Bill_${orderId}.pdf`);
+      }
+    }
+
+    PlaceOrderModule();
+  }
+
+  B();
+</script>

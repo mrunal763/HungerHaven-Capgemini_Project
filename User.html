@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard</title>
+  <link rel="icon" href="images/image.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/User.css" />
+</head>
+
+<body onload="loadLastPage()">
+  <!-- Top Navbar -->
+  <nav class="navbar navbar-expand-lg top-bar">
+    <div class="container-fluid">
+      <button class="toggle-sidebar-btn" onclick="toggleSidebar()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      &nbsp;&nbsp;
+      <a class="navbar-brand" href="#">HungerHaven User</a>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item d-flex align-items-center">
+
+          <a class="nav-link" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i>Log Out</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <h4>User Panel</h4>
+      <nav class="nav flex-column">
+        <a class="nav-link" href="#" onclick="loadPage('../Project/pages/page14.html',this)"><i
+            class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
+        <a class="nav-link" href="#" onclick="loadPage('../Project/pages/page6.html',this)"><i
+            class="fas fa-user me-2"></i>Profile</a>
+        <a class="nav-link" href="#" onclick="loadPage('../Project/pages/page7.html',this)"><i
+            class="fas fa-receipt me-2"></i>Previous Orders</a>
+        <a class="nav-link" href="#" onclick="loadPage('../Project/pages/page12.html',this)"><i
+            class="fas fa-utensils me-2"></i>Place Order</a>
+        <a class="nav-link" href="#" onclick="loadPage('../Project/pages/page13.html',this)"><i
+            class="fas fa-utensils me-2"></i>Reports</a>
+      </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area p-4" id="main-content">
+     
+    </div>
+
+
+    <script>// Sidebar Toggle
+      function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.classList.toggle("active");
+      }
+
+      function loadLastPage() {
+        const lastPage = sessionStorage.getItem("lastUserPage");
+        if (lastPage) {
+          loadPage(lastPage);
+        } else {
+          loadPage('../Project/pages/page14.html'); // default
+        }
+      }
+
+      function loadPage(page, link = null) {
+        fetch(page)
+          .then(res => res.text())
+          .then(data => {
+            const container = document.getElementById("main-content");
+            container.innerHTML = data;
+
+            // Execute embedded scripts
+            const scripts = container.querySelectorAll("script");
+            scripts.forEach(oldScript => {
+              const newScript = document.createElement("script");
+              if (oldScript.src) {
+                newScript.src = oldScript.src;
+              } else {
+                newScript.textContent = oldScript.textContent;
+              }
+              document.body.appendChild(newScript);
+              oldScript.remove();
+            });
+
+            // Highlight current nav-link
+            document.querySelectorAll(".nav-link").forEach(nav => nav.classList.remove("active"));
+            if (link) link.classList.add("active");
+
+            // Save to session
+            sessionStorage.setItem("lastUserPage", page);
+          })
+          .catch(err => {
+            document.getElementById("main-content").innerHTML = `<div class="alert alert-danger">Error loading page.</div>`;
+            console.error(err);
+          });
+      }
+
+      // Logout functionality
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        sessionStorage.removeItem("userId");
+        sessionStorage.removeItem("lastUserPage");
+        window.location.href = "../Project/login.html";
+      });
+
+    </script>
+    <script src="../Project/js/Users.js"></script>
+    <!-- <script src="../Project/js/main.js"></script> -->
+</body>
+
+</html>

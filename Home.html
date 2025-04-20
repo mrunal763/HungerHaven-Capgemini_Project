@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HungerHaven - Order Fresh Food Online</title>
+    <link rel="icon" href="images/image.png" />
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/Home.css">
+</head>
+
+<body class="body-fixed">
+
+    <!-- Header -->
+    <header class="site-header" id="top">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="header-logo d-flex align-items-center gap-2">
+                <img src="images/image.png" alt="Logo">
+                <h3 class="text-white mb-0">HungerHaven</h3>
+            </div>
+            <nav class="main-navigation d-flex justify-content-between align-items-center w-100">
+                <style>
+                    .header-menu a {
+                        text-decoration: none;
+                        color: white;
+                        margin-right: 10px;
+                        font-weight: 600;
+                        padding-bottom: 3px;
+                        border-bottom: 2px solid transparent;
+                        transition: all 0.3s ease;
+                    }
+
+                    .header-menu a:hover {
+                        color: white;
+                        border-bottom: 2px solid red;
+                    }
+                </style>
+                <div class="flex-grow-1 d-flex justify-content-center">
+                    <ul class="header-menu d-flex gap-4 mb-0">
+                        <a href="#home"><i class="uil uil-estate"></i> Home</a>
+                        <a href="#about"><i class="uil uil-info-circle"></i> About</a>
+                        <a href="#faq"><i class="uil uil-question-circle"></i> Help</a>
+                    </ul>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="login.html" class="btn btn-outline-light btn-sm px-3">Login</a>
+                    <a href="SignUp.html" class="btn btn-light btn-sm px-3 text-orange"
+                        style="color: var(--orange); font-weight: 600;">Sign Up</a>
+                </div>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="main-banner py-5" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="banner-text">
+                        <h1 class="mb-3">Welcome to <span style="color: var(--orange);">HungerHaven</span></h1>
+                        <p class="mb-4"><strong>Worshipping the Stomach</strong><br>Embark on a culinary journey through
+                            India's rich heritage.</p>
+                        <a href="login.html" class="btn btn-lg"
+                            style="background-color: var(--orange); color: white; border-radius: 5px;">Check
+                            Restaurants</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="banner-img mb-3" style="background-image: url('images/main-b.jpg');"></div>
+                    <div>
+                        <h5 class="h5-title">Veg Thali</h5>
+                        <p>Includes grains, lentils, vegetables, chutney, raita, pickles, and papadum</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-sec section" id="about">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h5 class="sec-sub-title mb-3" style="font-weight:bolder;">About Us</h5>
+                <h2 class="h2-title">Discover <span style="color: var(--orange);">Our Story</span></h2>
+                <p>At HungerHaven, we're on a mission to bring the vibrant flavors of Indian cuisine right to your
+                    doorstep.
+                    Blending tradition with convenience, we make it easy to explore authentic dishes from every corner
+                    of
+                    India — from spicy street snacks to rich regional thalis.</p>
+            </div>
+            <div class="row justify-content-center my-5">
+                <div class="col-lg-8 text-center">
+                    <video class="about-video" controls poster="images/video-thumbnail.jpg">
+                        <source src="images/v.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Logos -->
+    <section class="brands-sec py-5"
+        style="background-color: #fffaf4; border-top: 1px solid #ffe0c2; border-bottom: 1px solid #ffe0c2;">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h5 class="h5-title">Trusted by 70+ Restaurants</h5>
+            </div>
+            <div class="d-flex flex-wrap justify-content-center gap-4 align-items-center">
+                <div class="brands-box"><img src="images/brands/b1.png" alt="Brand 1" style="height: 150px;"></div>
+                <div class="brands-box"><img src="images/brands/b2.png" alt="Brand 2" style="height: 150px;"></div>
+                <div class="brands-box"><img src="images/brands/b3.png" alt="Brand 3" style="height: 150px;"></div>
+                <div class="brands-box"><img src="images/brands/b4.png" alt="Brand 4" style="height: 150px;"></div>
+                <div class="brands-box"><img src="images/brands/b5.png" alt="Brand 5" style="height: 150px;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-sec section" id="faq" style="background-color: #fff7f0;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="h2-title">Frequently <span style="color: var(--orange);">Asked Questions</span></h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="faq-box shadow-sm p-4 bg-white rounded">
+                        <h5 class="h5-title">🕒 What are the ordering hours?</h5>
+                        <p>You can place orders 24/7. We start processing deliveries from 9 AM to 11 PM daily.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="faq-box shadow-sm p-4 bg-white rounded">
+                        <h5 class="h5-title">💸 How do I get a refund?</h5>
+                        <p>Refunds are processed within 5–7 business days to your original payment method.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="faq-box shadow-sm p-4 bg-white rounded">
+                        <h5 class="h5-title">🚚 How long does delivery take?</h5>
+                        <p>Average delivery time is 30–45 minutes, depending on your location and time of day.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="faq-box shadow-sm p-4 bg-white rounded">
+                        <h5 class="h5-title">🥗 Do you offer vegetarian and non-veg options?</h5>
+                        <p>Yes! We offer a wide variety of both veg and non-veg meals in our menu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer" id="contact">
+        <div class="top-footer section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-info">
+                            <div class="footer-logo mb-3">
+                                <a href="Home.html"><img src="images/image.png" alt=""></a>
+                            </div>
+                            <p>Worshipping the Stomach</p>
+                            <div class="social-icon">
+                                <ul class="list-unstyled d-flex gap-3">
+                                    <li><a href="#"><i class="uil uil-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="uil uil-instagram"></i></a></li>
+                                    <li><a href="#"><i class="uil uil-github-alt"></i></a></li>
+                                    <li><a href="#"><i class="uil uil-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="footer-flex-box d-flex justify-content-between flex-wrap">
+                            <div class="footer-table-info">
+                                <h3 class="h3-title border-bottom pb-2">Open Hours</h3>
+                                <ul class="list-unstyled">
+                                    <li><i class="uil uil-clock"></i> Mon-Thurs: 9am - 10pm</li>
+                                    <li><i class="uil uil-clock"></i> Fri-Sun: 11am - 11pm</li>
+                                </ul>
+                            </div>
+                            <div class="footer-menu">
+                                <h3 class="h3-title border-bottom pb-2">Links</h3>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#about">About</a></li>
+                                    <li><a href="#faq">Help</a></li>
+                                    <li><a href="mailto:hungerhaven@gmail.com">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div class="footer-menu">
+                                <h3 class="h3-title border-bottom pb-2">Company</h3>
+                                <ul class="list-unstyled">
+                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Cookie Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom-footer text-center mt-4">
+            <div class="container">
+                <p class="mb-0">&copy; 2025 HungerHaven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Script -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

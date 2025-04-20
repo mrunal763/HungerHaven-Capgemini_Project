@@ -1,0 +1,859 @@
+{
+  "Users": [
+    {
+      "id": "d3fb",
+      "Name": "Mrunal Somankar",
+      "Email": "somankarmrunal763@gmail.com",
+      "Phone": "7083542356",
+      "Password": "Mrunal@763",
+      "Address": "Pimpri,Pune",
+      "UserType": "Admin"
+    },
+    {
+      "id": "R201",
+      "Name": "Spice Symphony",
+      "Email": "spice@symphony.in",
+      "Phone": "9876543210",
+      "Password": "Spice@123",
+      "Address": "Mumbai, Maharashtra",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "R202",
+      "Name": "The Curry Leaf",
+      "Email": "curryleaf@delhi.in",
+      "Phone": "9123456789",
+      "Password": "Curry@456",
+      "Address": "New Delhi, Delhi",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "R203",
+      "Name": "Dakshin Flavours",
+      "Email": "dakshin@flavours.co.in",
+      "Phone": "9988776655",
+      "Password": "Dakshin@789",
+      "Address": "Chennai, Tamil Nadu",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "R204",
+      "Name": "Punjabi Rasoi",
+      "Email": "rasoi@punjab.in",
+      "Phone": "9871234567",
+      "Password": "Rasoi@321",
+      "Address": "Amritsar, Punjab",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "R205",
+      "Name": "The Royal Thali",
+      "Email": "royalthali@jaipur.in",
+      "Phone": "9812345678",
+      "Password": "Royal@999",
+      "Address": "Jaipur, Rajasthan",
+      "UserType": "Restaurant"
+    },
+    {
+      "Name": "Goan Spice",
+      "Email": "spicehouse@goa.in",
+      "Phone": "9765432101",
+      "Password": "Goan@qwerx",
+      "Address": "Panaji, Goa",
+      "UserType": "Restaurant",
+      "id": "R206"
+    },
+    {
+      "id": "R207",
+      "Name": "Namma Ooru Dosa",
+      "Email": "namma@dosa.in",
+      "Phone": "9845123456",
+      "Password": "Dosa@112",
+      "Address": "Bengaluru, Karnataka",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "R208",
+      "Name": "The Bengali Bite",
+      "Email": "bite@kolkata.in",
+      "Phone": "9833112233",
+      "Password": "Bite@333",
+      "Address": "Kolkata, West Bengal",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "R209",
+      "Name": "Saffron Southern Kitchen",
+      "Email": "saffron@southern.in",
+      "Phone": "9744556677",
+      "Password": "Saffron@444",
+      "Address": "Thiruvananthapuram, Kerala",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "R210",
+      "Name": "Highland Tandoor",
+      "Email": "tandoor@shimla.in",
+      "Phone": "9622334455",
+      "Password": "Tandoor@555",
+      "Address": "Shimla, Himachal Pradesh",
+      "UserType": "Restaurant"
+    },
+    {
+      "id": "C101",
+      "Name": "Riya Sharma",
+      "Email": "riya.sharma23@gmail.com",
+      "Phone": "9876541230",
+      "Password": "Riya@123",
+      "Address": "Lajpat Nagar, New Delhi",
+      "UserType": "Customer"
+    },
+    {
+      "id": "C102",
+      "Name": "Arjun Mehta",
+      "Email": "arjun.mehta89@yahoo.com",
+      "Phone": "9765432189",
+      "Password": "Arjun@89",
+      "Address": "Andheri East, Mumbai",
+      "UserType": "Customer"
+    },
+    {
+      "id": "C103",
+      "Name": "Sneha Patil",
+      "Email": "sneha.patil92@outlook.com",
+      "Phone": "9832109876",
+      "Password": "Sneha@92",
+      "Address": "Shivaji Nagar, Pune",
+      "UserType": "Customer"
+    },
+    {
+      "id": "C104",
+      "Name": "Karthik Reddy",
+      "Email": "karthik.reddy77@gmail.com",
+      "Phone": "9123456677",
+      "Password": "Karthik@77",
+      "Address": "Banjara Hills, Hyderabad",
+      "UserType": "Customer"
+    },
+    {
+      "id": "C105",
+      "Name": "Krrish",
+      "Email": "krrish@gmail.com",
+      "Phone": "9123456677",
+      "Password": "Krrish@123",
+      "Address": "Rop Nager, Jammu",
+      "UserType": "Customer"
+    }
+  ],
+  "Restaurants": [
+    {
+      "id": "R201",
+      "Name": "Spice Symphony",
+      "Location": "Mumbai",
+      "Contact": "9876543210"
+    },
+    {
+      "id": "R202",
+      "Name": "The Curry Leaf",
+      "Location": "New Delhi",
+      "Contact": "9123456789"
+    },
+    {
+      "id": "R203",
+      "Name": "Dakshin Flavours",
+      "Location": "Chennai",
+      "Contact": "9988776655"
+    },
+    {
+      "id": "R204",
+      "Name": "Punjabi Rasoi",
+      "Location": "Amritsar",
+      "Contact": "9871234567"
+    },
+    {
+      "Name": "The Royal Thali",
+      "Location": "Jaipur Rajasthan",
+      "Contact": "9812345678",
+      "id": "R205"
+    },
+    {
+      "id": "R206",
+      "Name": "Goan Spice House",
+      "Location": "Panaji",
+      "Contact": "9765432101"
+    },
+    {
+      "id": "R207",
+      "Name": "Namma Ooru Dosa",
+      "Location": "Bengaluru",
+      "Contact": "9845123456"
+    },
+    {
+      "id": "R208",
+      "Name": "The Bengali Bite",
+      "Location": "Kolkata",
+      "Contact": "9833112233"
+    },
+    {
+      "id": "R209",
+      "Name": "Saffron Southern Kitchen",
+      "Location": "Thiruvananthapuram",
+      "Contact": "9744556677"
+    },
+    {
+      "id": "R210",
+      "Name": "Highland Tandoor",
+      "Location": "Shimla",
+      "Contact": "9622334455"
+    }
+  ],
+  "FoodItems": [
+    {
+      "Name": "Butter Chicken",
+      "Price": 350,
+      "RestaurantID": "R201",
+      "id": "F101"
+    },
+    {
+      "Name": "Paneer Tikka",
+      "Price": 280,
+      "RestaurantID": "R201",
+      "id": "F102"
+    },
+    {
+      "Name": "Masala Dosa",
+      "Price": 120,
+      "RestaurantID": "R202",
+      "id": "F103"
+    },
+    {
+      "Name": "Idli Sambar",
+      "Price": 100,
+      "RestaurantID": "R202",
+      "id": "F104"
+    },
+    {
+      "Name": "Fish Curry",
+      "Price": 260,
+      "RestaurantID": "R203",
+      "id": "F105"
+    },
+    {
+      "Name": "Prawns Masala",
+      "Price": 320,
+      "RestaurantID": "R203",
+      "id": "F106"
+    },
+    {
+      "Name": "Dal Baati Churma",
+      "Price": 200,
+      "RestaurantID": "R204",
+      "id": "F107"
+    },
+    {
+      "Name": "Gatte ki Sabzi",
+      "Price": 180,
+      "RestaurantID": "R204",
+      "id": "F108"
+    },
+    {
+      "Name": "Chicken Biryani",
+      "Price": 180,
+      "RestaurantID": "R205",
+      "id": "F109"
+    },
+    {
+      "Name": "Mutton Biryani",
+      "Price": 300,
+      "RestaurantID": "R205",
+      "id": "F110"
+    },
+    {
+      "Name": "Chole Bhature",
+      "Price": 150,
+      "RestaurantID": "R206",
+      "id": "F111"
+    },
+    {
+      "Name": "Rajma Chawal",
+      "Price": 130,
+      "RestaurantID": "R206",
+      "id": "F112"
+    },
+    {
+      "Name": "Momos",
+      "Price": 100,
+      "RestaurantID": "R207",
+      "id": "F113"
+    },
+    {
+      "Name": "Thukpa",
+      "Price": 140,
+      "RestaurantID": "R207",
+      "id": "F114"
+    },
+    {
+      "Name": "Kosha Mangsho",
+      "Price": 290,
+      "RestaurantID": "R208",
+      "id": "F115"
+    },
+    {
+      "Name": "Shorshe Ilish",
+      "Price": 310,
+      "RestaurantID": "R208",
+      "id": "F116"
+    },
+    {
+      "Name": "Chicken Chettinad",
+      "Price": 270,
+      "RestaurantID": "R209",
+      "id": "F117"
+    },
+    {
+      "Name": "Kothu Parotta",
+      "Price": 200,
+      "RestaurantID": "R209",
+      "id": "F118"
+    },
+    {
+      "Name": "Litti Chokha",
+      "Price": 140,
+      "RestaurantID": "R210",
+      "id": "F119"
+    },
+    {
+      "Name": "Sattu Paratha",
+      "Price": 130,
+      "RestaurantID": "R210",
+      "id": "F120"
+    }
+  ],
+  "Orders": [
+    {
+      "id": "5d01",
+      "OrderID": "1745099027701",
+      "UserID": "C102",
+      "RestaurantID": "R205",
+      "OrderDate": "2025-04-16",
+      "TotalAmount": 453,
+      "Status": "completed"
+    },
+    {
+      "id": "d0c7",
+      "OrderID": "1745099027702",
+      "UserID": "C104",
+      "RestaurantID": "R204",
+      "OrderDate": "2025-04-15",
+      "TotalAmount": 153,
+      "Status": "completed"
+    },
+    {
+      "id": "d06b",
+      "OrderID": "1745099027703",
+      "UserID": "C102",
+      "RestaurantID": "R202",
+      "OrderDate": "2025-03-30",
+      "TotalAmount": 330,
+      "Status": "completed"
+    },
+    {
+      "id": "43e3",
+      "OrderID": "1745099027704",
+      "UserID": "C102",
+      "RestaurantID": "R210",
+      "OrderDate": "2025-04-04",
+      "TotalAmount": 311,
+      "Status": "pending"
+    },
+    {
+      "id": "53ec",
+      "OrderID": "1745099027705",
+      "UserID": "C105",
+      "RestaurantID": "R201",
+      "OrderDate": "2025-03-21",
+      "TotalAmount": 262,
+      "Status": "pending"
+    },
+    {
+      "id": "8c1a",
+      "OrderID": "1745099027706",
+      "UserID": "C102",
+      "RestaurantID": "R204",
+      "OrderDate": "2025-03-21",
+      "TotalAmount": 677,
+      "Status": "completed"
+    },
+    {
+      "id": "2702",
+      "OrderID": "1745099027707",
+      "UserID": "C103",
+      "RestaurantID": "R208",
+      "OrderDate": "2025-03-30",
+      "TotalAmount": 365,
+      "Status": "completed"
+    },
+    {
+      "id": "8a9e",
+      "OrderID": "1745099027708",
+      "UserID": "C101",
+      "RestaurantID": "R202",
+      "OrderDate": "2025-03-12",
+      "TotalAmount": 332,
+      "Status": "pending"
+    },
+    {
+      "id": "8c11",
+      "OrderID": "1745099027709",
+      "UserID": "C102",
+      "RestaurantID": "R205",
+      "OrderDate": "2025-04-13",
+      "TotalAmount": 329,
+      "Status": "pending"
+    },
+    {
+      "id": "8cb1",
+      "OrderID": "1745099027710",
+      "UserID": "C104",
+      "RestaurantID": "R210",
+      "OrderDate": "2025-03-24",
+      "TotalAmount": 180,
+      "Status": "pending"
+    },
+    {
+      "id": "805f",
+      "OrderID": "1745099027711",
+      "UserID": "C102",
+      "RestaurantID": "R206",
+      "OrderDate": "2025-04-10",
+      "TotalAmount": 229,
+      "Status": "pending"
+    },
+    {
+      "id": "9d55",
+      "OrderID": "1745099027713",
+      "UserID": "C101",
+      "RestaurantID": "R208",
+      "OrderDate": "2025-04-12",
+      "TotalAmount": 552,
+      "Status": "completed"
+    },
+    {
+      "id": "02a6",
+      "OrderID": "1745099027714",
+      "UserID": "C102",
+      "RestaurantID": "R210",
+      "OrderDate": "2025-03-24",
+      "TotalAmount": 126,
+      "Status": "completed"
+    },
+    {
+      "id": "7770",
+      "OrderID": "1745099027715",
+      "UserID": "C101",
+      "RestaurantID": "R210",
+      "OrderDate": "2025-03-09",
+      "TotalAmount": 217,
+      "Status": "completed"
+    },
+    {
+      "id": "6bd5",
+      "OrderID": "1745099027716",
+      "UserID": "C105",
+      "RestaurantID": "R202",
+      "OrderDate": "2025-03-10",
+      "TotalAmount": 420,
+      "Status": "completed"
+    },
+    {
+      "id": "e9d6",
+      "OrderID": "1745099027717",
+      "UserID": "C101",
+      "RestaurantID": "R203",
+      "OrderDate": "2025-03-11",
+      "TotalAmount": 680,
+      "Status": "completed"
+    },
+    {
+      "id": "47ed",
+      "OrderID": "1745099027718",
+      "UserID": "C103",
+      "RestaurantID": "R202",
+      "OrderDate": "2025-03-25",
+      "TotalAmount": 319,
+      "Status": "completed"
+    },
+    {
+      "id": "bc04",
+      "OrderID": "1745099027719",
+      "UserID": "C104",
+      "RestaurantID": "R201",
+      "OrderDate": "2025-04-09",
+      "TotalAmount": 342,
+      "Status": "completed"
+    },
+    {
+      "id": "1951",
+      "OrderID": "1745099027720",
+      "UserID": "C103",
+      "RestaurantID": "R204",
+      "OrderDate": "2025-03-15",
+      "TotalAmount": 647,
+      "Status": "completed"
+    },
+    {
+      "id": "da7d",
+      "OrderID": "1745099027721",
+      "UserID": "C102",
+      "RestaurantID": "R204",
+      "OrderDate": "2025-03-29",
+      "TotalAmount": 285,
+      "Status": "completed"
+    },
+    {
+      "id": "b8e7",
+      "OrderID": "1745099027722",
+      "UserID": "C102",
+      "RestaurantID": "R201",
+      "OrderDate": "2025-03-06",
+      "TotalAmount": 453,
+      "Status": "pending"
+    },
+    {
+      "id": "e07e",
+      "OrderID": "1745099027723",
+      "UserID": "C102",
+      "RestaurantID": "R208",
+      "OrderDate": "2025-03-10",
+      "TotalAmount": 304,
+      "Status": "completed"
+    },
+    {
+      "id": "f5df",
+      "OrderID": "1745099027724",
+      "UserID": "C105",
+      "RestaurantID": "R209",
+      "OrderDate": "2025-04-04",
+      "TotalAmount": 360,
+      "Status": "completed"
+    },
+    {
+      "id": "8abf",
+      "OrderID": "1745099027725",
+      "UserID": "C105",
+      "RestaurantID": "R210",
+      "OrderDate": "2025-03-18",
+      "TotalAmount": 650,
+      "Status": "pending"
+    },
+    {
+      "id": "8d15",
+      "OrderID": "1745099027726",
+      "UserID": "C105",
+      "RestaurantID": "R202",
+      "OrderDate": "2025-03-11",
+      "TotalAmount": 127,
+      "Status": "pending"
+    },
+    {
+      "id": "0f47",
+      "OrderID": "1745099027727",
+      "UserID": "C105",
+      "RestaurantID": "R208",
+      "OrderDate": "2025-03-20",
+      "TotalAmount": 601,
+      "Status": "completed"
+    },
+    {
+      "id": "28f2",
+      "OrderID": "1745099027728",
+      "UserID": "C101",
+      "RestaurantID": "R206",
+      "OrderDate": "2025-03-30",
+      "TotalAmount": 210,
+      "Status": "completed"
+    },
+    {
+      "id": "2088",
+      "OrderID": "1745099027729",
+      "UserID": "C101",
+      "RestaurantID": "R205",
+      "OrderDate": "2025-04-02",
+      "TotalAmount": 332,
+      "Status": "completed"
+    },
+    {
+      "id": "7c18",
+      "OrderID": "1745099027730",
+      "UserID": "C102",
+      "RestaurantID": "R201",
+      "OrderDate": "2025-03-07",
+      "TotalAmount": 179,
+      "Status": "completed"
+    },
+    {
+      "id": "483f",
+      "OrderID": "C105-1745173938930",
+      "UserID": "C105",
+      "RestaurantID": "R205",
+      "OrderDate": "2025-04-20T18:32:18.930Z",
+      "TotalAmount": 360,
+      "Status": "pending"
+    },
+    {
+      "id": "249b",
+      "OrderID": "C105-1745173950055",
+      "UserID": "C105",
+      "RestaurantID": "R205",
+      "OrderDate": "2025-04-20T18:32:30.055Z",
+      "TotalAmount": 300,
+      "Status": "pending"
+    },
+    {
+      "id": "b3f7",
+      "OrderID": "C105-1745174069516",
+      "UserID": "C105",
+      "RestaurantID": "R201",
+      "OrderDate": "2025-04-20T18:34:29.516Z",
+      "TotalAmount": 350,
+      "Status": "pending"
+    },
+    {
+      "id": "f719",
+      "OrderID": "C105-1745176421568",
+      "UserID": "C105",
+      "RestaurantID": "R210",
+      "OrderDate": "2025-04-20T19:13:41.568Z",
+      "TotalAmount": 130,
+      "Status": "pending"
+    },
+    {
+      "id": "13b4",
+      "OrderID": "C105-1745177329088",
+      "UserID": "C105",
+      "RestaurantID": "R202",
+      "OrderDate": "2025-04-20T19:28:49.088Z",
+      "TotalAmount": 100,
+      "Status": "pending"
+    }
+  ],
+  "OrderItems": [
+    {
+      "OrderItemID": 401,
+      "OrderID": 1745099027701,
+      "ItemID": "fd1",
+      "Quantity": 2,
+      "id": "1a10"
+    },
+    {
+      "OrderItemID": 402,
+      "OrderID": 1745099027701,
+      "ItemID": "fd2",
+      "Quantity": 1,
+      "id": "1a11"
+    },
+    {
+      "OrderItemID": 403,
+      "OrderID": 1745099027702,
+      "ItemID": "fd4",
+      "Quantity": 1,
+      "id": "1a12"
+    },
+    {
+      "OrderItemID": 404,
+      "OrderID": 1745099027703,
+      "ItemID": "fd6",
+      "Quantity": 2,
+      "id": "1a13"
+    },
+    {
+      "OrderItemID": 405,
+      "OrderID": 1745099027704,
+      "ItemID": "fd15",
+      "Quantity": 1,
+      "id": "1a14"
+    },
+    {
+      "OrderItemID": 406,
+      "OrderID": 1745099027705,
+      "ItemID": "fd11",
+      "Quantity": 2,
+      "id": "1a15"
+    },
+    {
+      "OrderItemID": 407,
+      "OrderID": 1745099027706,
+      "ItemID": "fd3",
+      "Quantity": 1,
+      "id": "1a16"
+    },
+    {
+      "OrderItemID": 408,
+      "OrderID": 1745099027707,
+      "ItemID": "fd19",
+      "Quantity": 3,
+      "id": "1a17"
+    },
+    {
+      "OrderItemID": 409,
+      "OrderID": 1745099027708,
+      "ItemID": "fd5",
+      "Quantity": 1,
+      "id": "1a18"
+    },
+    {
+      "OrderItemID": 410,
+      "OrderID": 1745099027709,
+      "ItemID": "fd1",
+      "Quantity": 2,
+      "id": "1a19"
+    },
+    {
+      "OrderItemID": 411,
+      "OrderID": 1745099027710,
+      "ItemID": "fd14",
+      "Quantity": 1,
+      "id": "1a20"
+    },
+    {
+      "OrderItemID": 412,
+      "OrderID": 1745099027711,
+      "ItemID": "fd17",
+      "Quantity": 1,
+      "id": "1a21"
+    },
+    {
+      "OrderItemID": 413,
+      "OrderID": 1745099027712,
+      "ItemID": "fd9",
+      "Quantity": 2,
+      "id": "1a22"
+    },
+    {
+      "OrderItemID": 414,
+      "OrderID": 1745099027713,
+      "ItemID": "fd19",
+      "Quantity": 1,
+      "id": "1a23"
+    },
+    {
+      "OrderItemID": 415,
+      "OrderID": 1745099027714,
+      "ItemID": "fd15",
+      "Quantity": 2,
+      "id": "1a24"
+    },
+    {
+      "OrderItemID": 416,
+      "OrderID": 1745099027715,
+      "ItemID": "fd14",
+      "Quantity": 1,
+      "id": "1a25"
+    },
+    {
+      "OrderItemID": 417,
+      "OrderID": 1745099027716,
+      "ItemID": "fd5",
+      "Quantity": 1,
+      "id": "1a26"
+    },
+    {
+      "OrderItemID": 418,
+      "OrderID": 1745099027717,
+      "ItemID": "fd9",
+      "Quantity": 3,
+      "id": "1a27"
+    },
+    {
+      "OrderItemID": 419,
+      "OrderID": 1745099027718,
+      "ItemID": "fd6",
+      "Quantity": 2,
+      "id": "1a28"
+    },
+    {
+      "OrderItemID": 420,
+      "OrderID": 1745099027719,
+      "ItemID": "fd10",
+      "Quantity": 1,
+      "id": "1a29"
+    },
+    {
+      "OrderItemID": 421,
+      "OrderID": 1745099027720,
+      "ItemID": "fd4",
+      "Quantity": 1,
+      "id": "1a30"
+    },
+    {
+      "OrderItemID": 422,
+      "OrderID": 1745099027721,
+      "ItemID": "fd2",
+      "Quantity": 1,
+      "id": "1a31"
+    },
+    {
+      "OrderItemID": 423,
+      "OrderID": 1745099027722,
+      "ItemID": "fd11",
+      "Quantity": 1,
+      "id": "1a32"
+    },
+    {
+      "OrderItemID": 424,
+      "OrderID": 1745099027723,
+      "ItemID": "fd18",
+      "Quantity": 2,
+      "id": "1a33"
+    },
+    {
+      "OrderItemID": 425,
+      "OrderID": 1745099027724,
+      "ItemID": "fd19",
+      "Quantity": 2,
+      "id": "1a34"
+    },
+    {
+      "OrderItemID": 426,
+      "OrderID": 1745099027725,
+      "ItemID": "fd16",
+      "Quantity": 2,
+      "id": "1a35"
+    },
+    {
+      "OrderItemID": 427,
+      "OrderID": 1745099027726,
+      "ItemID": "fd8",
+      "Quantity": 1,
+      "id": "1a36"
+    },
+    {
+      "OrderItemID": 428,
+      "OrderID": 1745099027727,
+      "ItemID": "fd19",
+      "Quantity": 3,
+      "id": "1a37"
+    },
+    {
+      "OrderItemID": 429,
+      "OrderID": 1745099027728,
+      "ItemID": "fd17",
+      "Quantity": 1,
+      "id": "1a38"
+    },
+    {
+      "OrderItemID": 430,
+      "OrderID": 1745099027729,
+      "ItemID": "fd1",
+      "Quantity": 1,
+      "id": "1a39"
+    },
+    {
+      "OrderItemID": 431,
+      "OrderID": 1745099027730,
+      "ItemID": "fd10",
+      "Quantity": 2,
+      "id": "1a40"
+    }
+  ]
+}

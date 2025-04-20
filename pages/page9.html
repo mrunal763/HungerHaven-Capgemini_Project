@@ -1,0 +1,45 @@
+
+<body class="p-4" id="main-content">
+  <div class="container">
+    <h2 class="mb-4">Your Menu Items</h2>
+    <form id="itemForm" class="row g-3">
+      <input type="hidden" id="ItemId" />
+      <div class="col-md-4">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" id="Name" class="form-control" required />
+        <div class="invalid-feedback">Enter at least 3 characters.</div>
+      </div>
+      <div class="col-md-4">
+        <label for="Price" class="form-label">Price</label>
+        <input type="number" id="Price" class="form-control" required />
+        <div class="invalid-feedback">Price must be greater than 0.</div>
+      </div>
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-success">Save</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+      </div>
+    </form>
+
+    <hr />
+    <div class="mb-3 row">
+      <div class="col-md-6">
+        <input type="text" id="globalSearch" placeholder="Search by name..." class="form-control" />
+      </div>
+    </div>
+
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="itemTableBody"></tbody>
+    </table>
+  </div>
+
+
+
+
+<script src="../Project/js/ResItem.js"></script>

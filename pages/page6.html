@@ -1,0 +1,52 @@
+<div class="container" id="main-content">
+    <h2 class="mb-4">User Profile</h2>
+
+    <div class="card p-4 shadow-sm" id="profileCard">
+        <div class="mb-3">
+            <strong>Name:</strong> <span id="profileName">Loading...</span>
+        </div>
+        <div class="mb-3">
+            <strong>Email:</strong> <span id="profileEmail">Loading...</span>
+        </div>
+        <div class="mb-3">
+            <strong>Password:</strong> <span id="profilePassword">Loading...</span>
+        </div>
+        <div class="mb-3">
+            <strong>Location:</strong> <span id="profileLocation">Loading...</span>
+        </div>
+        <div class="mb-3">
+            <strong>Contact Number:</strong> <span id="profilePhone">Loading...</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    function L() {
+        const userId = sessionStorage.getItem("userId");
+
+        if (!userId) {
+            document.getElementById("main-content").innerHTML = "<p class='text-danger'>User not logged in.</p>";
+        } else {
+            fetch(`http://localhost:3000/Users/${userId}`)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.json();
+                })
+                .then((user) => {
+                    document.getElementById("profileName").textContent = user.Name || "N/A";
+                    document.getElementById("profileEmail").textContent = user.Email || "N/A";
+                    document.getElementById("profilePassword").textContent = user.Password || "N/A";
+                    document.getElementById("profileLocation").textContent = user.Address || "N/A";
+                    document.getElementById("profilePhone").textContent = user.Phone || "N/A";
+                })
+                .catch((error) => {
+                    console.error("Fetch error:", error);
+                    document.getElementById("main-content").innerHTML =
+                        "<div class='alert alert-danger'>Failed to load user profile.</div>";
+                });
+        }
+    }
+    L();
+</script>

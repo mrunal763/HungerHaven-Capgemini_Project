@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Online Food Ordering System</title>
+    <link rel="icon" href="images/image.png">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/Login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+
+<body >
+    <video id="video-background" autoplay loop muted>
+        <source src="images/videoplayback.webm" type="video/webm">
+    </video>
+
+    <div class="login-container">
+        <img src="images/image.png" alt="Logo" class="logo">
+        <h1 class="brand-title">HungerHaven</h1>
+        <form id="abc">
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" required>
+                <div class="invalid-feedback">Enter valid email.</div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Password" required>
+                <div class="invalid-feedback">Password must be at least 8 characters with 1 uppercase, 1 lowercase, and
+                    1
+                    special character.</div>
+            </div>
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+            <p>Don't have an account? <a href="SignUp.html" class="register-link">Register</a></p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </form>
+    </div>
+
+   
+    <script src="Login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+:root {
+	--orange: #ff6b00;
+	--white: #ffffff;
+}
+
+body {
+	margin: 0;
+	overflow: hidden;
+	font-family: Arial, sans-serif;
+}
+
+#video-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	object-fit: cover;
+	z-index: -1;
+	filter: brightness(0.7);
+}
+
+.login-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 350px;
+	background: rgba(255, 255, 255, 0.1);
+	padding: 30px;
+	border-radius: 10px;
+	border: 1px solid var(--orange);
+	box-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+	text-align: center;
+}
+
+.logo {
+	width: 100px;
+	margin-bottom: 20px;
+	filter: drop-shadow(0 0 5px var(--orange));
+}
+
+h2,
+.brand-title {
+	color: var(--orange);
+	margin-bottom: 25px;
+	text-shadow: 0 0 5px rgba(255, 107, 0, 0.3);
+}
+
+.brand-title {
+	font-size: 48px;
+	font-weight: bold;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	color: transparent;
+	-webkit-text-stroke: 1.5px var(--orange);
+	text-shadow: none;
+	margin-top: 0;
+	margin-bottom: 25px;
+}
+
+.form-control {
+	background-color: rgba(255, 255, 255, 0.05);
+	border: 1px solid var(--orange);
+	color: var(--white);
+	margin-bottom: 15px;
+}
+
+.form-control::placeholder {
+	color: #ffddb8;
+}
+
+.form-control:focus {
+	background-color: rgba(255, 255, 255, 0.1);
+	border-color: var(--orange);
+	box-shadow: 0 0 0 0.25rem rgba(255, 107, 0, 0.3);
+	color: var(--white);
+}
+
+.btn-primary {
+	background-color: var(--orange);
+	border-color: var(--orange);
+	color: var(--white);
+	font-weight: bold;
+}
+
+.btn-primary:hover {
+	background-color: #e65d00;
+	border-color: #e65d00;
+}
+
+.remember-me {
+	text-align: left;
+	margin: 15px 0;
+	color: var(--white);
+}
+
+.remember-me input {
+	accent-color: var(--orange);
+}
+
+.register-link {
+	color: var(--orange);
+}
+
+.register-link:hover {
+	color: #e65d00;
+	text-decoration: none;
+}
+
+.social-icons {
+	margin-top: 20px;
+}
+
+.social-icons a {
+	color: var(--white);
+	margin: 0 10px;
+	font-size: 20px;
+}
+
+.social-icons a:hover {
+	color: var(--orange);
+	transform: scale(1.2);
+}
+
+p {
+	color: var(--white);
+}

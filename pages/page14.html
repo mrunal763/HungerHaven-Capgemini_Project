@@ -1,0 +1,96 @@
+<body onload="loadLastPage()">
+    <div  id="main-content">
+        <div class="welcome-section ">
+            <h2 class="fw-bold">Welcome, <span id="userName">User</span> 👋</h2>
+            <p class="lead text-muted">
+                Browse restaurants and manage your orders at <strong>HungerHaven</strong>.
+            </p>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-primary shadow-sm">
+                    <strong>Orders Placed:</strong> <span id="userOrderCount">0</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-success shadow-sm">
+                    <strong>Total Spent:</strong> <span id="userTotalSpent">₹0</span>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="alert alert-info shadow-sm">
+                    <strong>Total Restaurants:</strong> <span id="restaurantCount">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Orders -->
+        <div class="recent-orders mt-5">
+            <h4 class="fw-bold">🧾 Recent Orders</h4>
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Sr.No</th>
+                            <th>Restaurant</th>
+                            <th>Order Date</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentOrdersTable">
+                        <tr>
+                            <td colspan="4">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        // This function loads the last visited page from sessionStorage
+        function loadLastPage() {
+            const lastPage = sessionStorage.getItem("lastPage");
+            if (lastPage) {
+                loadPage(lastPage);
+            } else {
+                loadPage("../Project/pages/page14.html"); // Default to Dashboard if no page is saved
+            }
+        }
+
+        // This function loads a page into the main-content area and stores the last visited page
+        function loadPage(page) {
+            fetch(page)
+                .then((response) => response.text())
+                .then((data) => {
+                    const container = document.getElementById("main-content");
+                    container.innerHTML = data;
+
+                    // Extract and evaluate scripts manually
+                    const scripts = container.querySelectorAll("script");
+                    scripts.forEach((script) => {
+                        const newScript = document.createElement("script");
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript);
+                        script.remove(); // Optional: remove the original script tag
+                    });
+
+                    sessionStorage.setItem("lastPage", page); // Save the current page in sessionStorage
+                })
+                .catch((err) => {
+                    document.getElementById("main-content").innerHTML =
+                        '<p class="text-danger">Failed to load content.</p>';
+                    console.error(err);
+                });
+        }
+    </script>
+
+    <script src="../Project/js/Users.js"></script>
+    <script src="../Project/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
